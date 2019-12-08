@@ -1,5 +1,5 @@
 {
-    "BAHMNI_PAGE_TITLE_KEY": "Inicio Bahmni",
+    "BAHMNI_PAGE_TITLE_KEY": "Inicio NepalEHR",
     "LOGIN_LABEL_LOGIN_KEY": "Iniciar sesión",
     "LOGIN_LABEL_SUBMIT_KEY": "Enviar",
     "LOGIN_LABEL_ENTER_OTP_KEY": "Ingresar OTP",
@@ -45,7 +45,7 @@
     "YOU_HAVE_NOT_BEEN_SETUP_PROVIDER": "Usted no esta designado como Proveedor, por favor contacte el administrador",
     "COULD_NOT_GET_PROVIDER": "No se pudo encontrar el proveedor para el usuario actual",
     "WARNING_SERVER_TIME_ZONE_MISMATCH": "La zona horaria del servidor ({{serverTime}}) es distinta de la hora/zona horaria de su navegador ({{localeTimeZone}}). Esto puede ocasionar que algunos datos o informes parezcan incorrectos. Por favor contacte al administrador para obtener más asistencia.",
-    "LOGIN_PAGE_HEADER_TEXT": "INGRESO A BAHMNI EMR",
+    "LOGIN_PAGE_HEADER_TEXT": "INGRESO A NepalEHR EMR",
     "LOGIN_PAGE_TITLE_TEXT": "TEXTO DE TÍTULO",
-    "LOGIN_UNSUPPORTED_BROWSER_KEY": "Bahmni es compatible con el navegador Chrome"
+    "LOGIN_UNSUPPORTED_BROWSER_KEY": "NepalEHR es compatible con el navegador Chrome"
 }

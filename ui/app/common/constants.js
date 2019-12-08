@@ -251,7 +251,11 @@ Bahmni.Common = Bahmni.Common || {};
         conditionHistoryUrl: EMRAPI + '/conditionhistory',
         followUpConditionConcept: 'Follow-up Condition',
         localeLangs: "/bahmni_config/openmrs/apps/home/locale_languages.json",
-        privilegeRequiredErrorMessage: "User is logged in but doesn't have the relevant privilege"
+        privilegeRequiredErrorMessage: "PRIVILEGE_REQUIRED",
+        patientFormsUrl: BAHMNI_CORE + "/patient/{patientUuid}/forms",
+        defaultPossibleRelativeSearchLimit: 10,
+        formBuilderDisplayControlType: "formsV2",
+        formBuilderType: "v2"
     };
 })();
 

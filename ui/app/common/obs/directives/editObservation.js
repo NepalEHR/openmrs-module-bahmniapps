@@ -37,6 +37,31 @@ angular.module('bahmni.common.obs')
                             $scope.editableObservations = $scope.encounter.observations;
                         }
                         $scope.patient = {uuid: $scope.encounter.patientUuid};
+                        if ($scope.isFormBuilderForm()) {
+                            setFormDetails();
+                        }
+                    });
+                };
+
+                $scope.isFormBuilderForm = function () {
+                    return $scope.observation.formType === Bahmni.Common.Constants.formBuilderType;
+                };
+
+                var setFormDetails = function () {
+                    formService.getAllForms().then(function (response) {
+                        var allForms = response.data;
+                        var observationForm = getFormByFormName(allForms, $scope.observation.formName, $scope.observation.formVersion);
+                        if (observationForm) {
+                            $scope.formDetails = new Bahmni.ObservationForm(
+                                observationForm.uuid, $rootScope.currentUser, $scope.observation.formName,
+                                $scope.observation.formVersion, $scope.editableObservations);
+                        }
+                    });
+                };
+
+                var getFormByFormName = function (formList, formName, formVersion) {
+                    return _.find(formList, function (form) {
+                        return form.name == formName && form.version == formVersion;
                     });
                 };
 

@@ -1,5 +1,5 @@
 {
-    "BAHMNI_PAGE_TITLE_KEY": "Accueil Bahmni",
+    "BAHMNI_PAGE_TITLE_KEY": "Accueil NepalEHR",
     "LOGIN_LABEL_LOGIN_KEY": "S'identifier",
     "LOGIN_LABEL_SUBMIT_KEY": "Envoyer",
     "LOGIN_LABEL_ENTER_OTP_KEY": "Enter OTP",
@@ -45,7 +45,7 @@
     "YOU_HAVE_NOT_BEEN_SETUP_PROVIDER": "You have not been setup as a Provider, please contact administrator.",
     "COULD_NOT_GET_PROVIDER": "Could not get provider for the current user.",
     "WARNING_SERVER_TIME_ZONE_MISMATCH": "La fuseau horaire du serveur ({{serverTime}}) est différente de l'heure / fuseau horaire de votre navigateur ({{localeTimeZone}}). Cela peut entraîner l'apparition incorrecte de certaines données ou rapports. Veuillez contacter l'administrateur pour obtenir de l'aide.",
-    "LOGIN_PAGE_HEADER_TEXT": "BAHMNI DME LOGIN",
+    "LOGIN_PAGE_HEADER_TEXT": "NepalEHR DME LOGIN",
     "LOGIN_PAGE_TITLE_TEXT": "TITRE TEXTE",
-    "LOGIN_UNSUPPORTED_BROWSER_KEY": "Bahmni est pris en charge sur le navigateur Chrome"
+    "LOGIN_UNSUPPORTED_BROWSER_KEY": "NepalEHR est pris en charge sur le navigateur Chrome"
 }

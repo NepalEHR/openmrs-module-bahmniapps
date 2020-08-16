@@ -17,6 +17,11 @@
                             ng-change="handleNepaliDateUpdate(observation)" observation="::observation"
                             allow-future-dates="{{::observation.allowFutureDate}}"
                             npdatepicker>
+        <button
+                class="fa fa-times-circle fa-adjust fa-2x fa-align-justify"
+                ng-if="observation.nepaliDate"
+                ng-click="clearNepaliDate()">
+        </button>
         <input id="{{::observation.uniqueId}}" obs-constraints obs="::observation" hidden
                             ng-disabled="observation.disabled"
                             ng-model="observation.value" ng-change="handleUpdate()"

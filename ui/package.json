@@ -45,8 +45,24 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
-  "scripts": {
-    "test": "karma start test/config/karma.conf.js"
+   "scripts": {
+    "test": "karma start test/config/karma.conf.js",
+    "test:watch": "grunt karma:watch",
+    "watch": "grunt watch",
+    "preinstall": "node -e \"if (process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('Use yarn for installing: https://yarnpkg.com/en/docs/install')\"",
+    "postinstall": "node -e \"try { require('fs').symlinkSync('../node_modules/@bower_components', 'app/components', 'junction') } catch (e){ console.info(e.message) } \"",
+    "default": "grunt",
+    "build": "grunt build",
+    "dev": "grunt dev",
+    "clean": "grunt clean",
+    "lint": "grunt eslint",
+    "lint:fix": "grunt eslint --fix=true",
+    "coverage": "grunt coverage",
+    "compass": "grunt compass",
+    "bundle": "grunt bundle",
+    "uglify-and-rename": "grunt uglify-and-rename",
+    "web": "grunt web",
+    "ci": "grunt bundle && grunt uglify-and-rename && grunt web"
   },
   "repository": {
     "type": "git",

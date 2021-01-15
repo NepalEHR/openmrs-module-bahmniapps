@@ -52,7 +52,7 @@
                     </button>
                     <div class="frequency-widget uniform-frequency" ng-show="treatment.isUniformFrequency">
                         <section class="form-field-inline">
-                            <article class="form-field">
+                            <article class="form-field" ng-if="!treatmentConfig.isHiddenField('dose')">
                                 <div class="field-attribute">
                                     <label class="dose-label">{{ ::treatmentConfig.translate('dose', 'MEDICATION_LABEL_DOSE') }} </label>
                                 </div>
@@ -93,7 +93,7 @@
                                 </div>
                             </article>
                         </section>
-                        <article class="form-field clearfix">
+                        <article class="form-field clearfix" ng-if="!treatmentConfig.isHiddenField('frequency')">
                             <div class="field-attribute">
                                 <label>{{ ::treatmentConfig.translate('frequency', 'MEDICATION_LABEL_FREQUENCY') }} </label>
                             </div>
@@ -107,7 +107,7 @@
                                 </select>
                             </div>
                         </article>
-                        <article class="form-field clearfix">
+                        <article class="form-field clearfix" ng-if="!treatmentConfig.isHiddenField('route')">
                             <div class="field-attribute">
                                 <label>{{ ::treatmentConfig.translate('route', 'MEDICATION_LABEL_ROUTE') }} </label>
                             </div>
@@ -163,7 +163,7 @@
                         </article>
                     </div>
                 </div>
-                <article class="form-field">
+                <article class="form-field"  ng-if="!treatmentConfig.isHiddenField('startDate')">
                     <div class="field-attribute">
                         <label class="start-date-label ">{{ ::treatmentConfig.translate('startDate', 'MEDICATION_LABEL_START_DATE') }} </label>
                     </div>
@@ -215,7 +215,7 @@
                                 <p class="caution" ng-show="messages_caution">
                             </div>
                         </article>
-                        <article class="form-field fl">
+                        <article class="form-field fl" ng-if="!treatmentConfig.isHiddenField('frequency')">
                             <div class="field-attribute">
                                 <label class="fl unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_UNITS') }} </label>
                             </div>

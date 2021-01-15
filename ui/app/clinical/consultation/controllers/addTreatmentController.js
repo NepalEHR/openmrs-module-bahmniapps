@@ -510,9 +510,6 @@ angular.module('bahmni.clinical')
                             form: selectedItem.drug.dosageForm && selectedItem.drug.dosageForm.display,
                             uuid: selectedItem.drug.uuid
                         });
-                        cautionMessage(selectedItem.drug.nam);
-                        productStock(selectedItem.drug.uuid);
-                        console.log(productStock(selectedItem.drug.uuid));
                         selectedItem = null;
                         return;
                     }
@@ -759,21 +756,4 @@ angular.module('bahmni.clinical')
                 $scope.treatmentConfig = treatmentConfig;// $scope.treatmentConfig used only in UI
             };
             init();
-            let productStock = function (uuid) {
-                orderSetService.getStock(uuid).then(function (response) {
-                    console.log("after getting response");
-                    console.log(response.data.actual_stock);
-                    $scope.actual_stock = response.data.actual_stock;
-                });
-            };
-            let cautionMessage = function (name) {
-                console.log("NAME");
-                console.log(name);
-                if (name === "Fluoxetine 20mg") {
-                    $scope.messages_caution = "Initial dose 10mg daily, increase to 20mg daily after 1 week. Avoid in pregnant and breast-feeding mothers. Avoid in children between 12 to 18 years.";
-                } else if (name == "Amitriptyline 25mg")
-                {
-                    $scope.messages_caution = "Starting dose 25-50mg at bedtime. Increase by 25mg per week. Avoid if suicidal/heart disease/pregnant and/or breast-feeding mothers. Cautious use in elderly, use 10mg.";
-                }
-            };
         }]);

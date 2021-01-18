@@ -21,8 +21,9 @@
         <col width='130px' />
         <tbody>
             <tr ng-repeat="row in tableDetails">
-                <td ng-repeat="heading in tableHeadings">
-                    <span>{{row[heading]}}</span>
+                <td ng-repeat="heading in tableHeadings">                    
+                    <span ng-if="(heading.indexOf('Time') !== -1) || (heading.indexOf('time') !== -1)">{{row[heading] | npDate}}</span>
+                    <span ng-if="(heading.indexOf('Time') == -1) && (heading.indexOf('time') == -1)">{{row[heading]}}</span>
                 </td>
             </tr>
         </tbody>

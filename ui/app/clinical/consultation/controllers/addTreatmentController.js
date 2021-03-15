@@ -761,7 +761,7 @@ angular.module('bahmni.clinical')
             var productStock = function (uuid) {
                 orderSetService.getStock(uuid).then(function (response) {
                     console.log("after getting response");
-                    $scope.actual_stock = response.data.actual_stock;
+                    $scope.qty_available = response.data.qty_available;
                 });
             };
             var cautionMessage = function (name) {

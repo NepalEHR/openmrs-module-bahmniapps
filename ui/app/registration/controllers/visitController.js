@@ -21,7 +21,7 @@ angular.module('bahmni.registration')
             defaultVisitType = defaultVisitType || appService.getAppDescriptor().getConfigValue('defaultVisitType');
 
 
-            $scope.visitControl = new Bahmni.Common.VisitControl(
+         $scope.visitControl = new Bahmni.Common.VisitControl(
                 $rootScope.regEncounterConfiguration.getVisitTypesAsArray(),
                 defaultVisitType,encounterService, $translate, visitService, patientService
             );
@@ -51,12 +51,7 @@ angular.module('bahmni.registration')
                 return deferred.promise;
             };
 
-
-
-
-
-
-            var getActiveEncounter = function () {
+           var getActiveEncounter = function () {
                 var deferred = $q.defer();
                 encounterService.find({
                     "patientUuid": patientUuid,

@@ -96,7 +96,8 @@ describe('visitHeaderController', function () {
         it("should broadcastevent:printVisitTab with the current tab as param", function () {
             createController();
             scope.visitTabConfig.currentTab = config[0];
-            scope.print();
+            scope.
+            print();
             expect(rootScope.$broadcast).toHaveBeenCalledWith('event:printVisitTab',config[0]);
         });
     });

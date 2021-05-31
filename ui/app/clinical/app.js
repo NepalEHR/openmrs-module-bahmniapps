@@ -114,6 +114,7 @@ angular.module('consultation')
                         }
                     }
                 },
+
                 resolve: {
                     visitHistory: function (visitHistoryInitialization, $stateParams, $rootScope) {
                         return visitHistoryInitialization($stateParams.patientUuid, $rootScope.visitLocation);

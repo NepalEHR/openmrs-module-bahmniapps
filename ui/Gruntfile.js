@@ -558,6 +558,7 @@ module.exports = function (grunt) {
         var exec = require('child_process').exec;
         var cb = this.async();
         exec('bower install', function (err, stdout) {
+
             console.log(stdout);
             cb(!err);
         });

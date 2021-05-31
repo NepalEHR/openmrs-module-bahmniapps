@@ -14,14 +14,17 @@ Bahmni.Common.VisitControl = function (visitTypes, defaultVisitTypeName, encount
     };
 
     self.startVisit = function (visitType) {
-        self.onStartVisit();
         self.selectedVisitType = visitType;
+        self.onStartVisit();
+
     };
 
     self.createVisitOnly = function (patientUuid, visitLocationUuid) {
         var visitType = self.selectedVisitType || self.defaultVisitType;
         var visitDetails = {patient: patientUuid, visitType: visitType.uuid, location: visitLocationUuid};
         return visitService.createVisit(visitDetails);
+
     };
 };
+
 

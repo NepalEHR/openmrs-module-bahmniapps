@@ -80,12 +80,15 @@ angular.module('bahmni.registration')
                 };
 
                 $scope.visitControl = new Bahmni.Common.VisitControl(
+
                     $rootScope.regEncounterConfiguration.getVisitTypesAsArray(),
                     defaultVisitType, encounterService, $translate, visitService, patientService
+
                 );
 
                 $scope.visitControl.onStartVisit = function () {
                     $scope.setSubmitSource('startVisit');
+
                 };
 
                 $scope.setSubmitSource = function (source) {
@@ -95,6 +98,10 @@ angular.module('bahmni.registration')
                 $scope.showStartVisitButton = function () {
                     return showStartVisitButton;
                 };
+
+
+
+
 
                 var goToForwardUrlPage = function (patientData) {
                     var forwardUrl = appService.getAppDescriptor().formatUrl($scope.activeVisitConfig.forwardUrl, {'patientUuid': patientData.patient.uuid});

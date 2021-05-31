@@ -396,7 +396,7 @@ angular.module('bahmni.registration')
                 }
             };
 
-            spinner.forPromise($q.all([getPatient(), getActiveEncounter(), searchActiveVisitsPromise()])
+
 
             var isMemberEligible = function (nhisNumber) {
                 var deferred = $q.defer();

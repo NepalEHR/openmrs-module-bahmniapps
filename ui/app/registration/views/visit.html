@@ -132,17 +132,20 @@
                     </div>
 
 
-
-                    <div class="left">
-                        <label class="control-label" for="Charge">&nbsp;&nbsp;&nbsp;&nbsp;
-                            Charge:&nbsp;&nbsp;&nbsp;<strong>{{visitTypePrice}}</strong></label>
+                    <div class="form-field photocontainer-spacing clearfix">
+                        <div class="field-attribute">
+                            <label class="control-label" for="Charge">Charge:</label>
+                        </div>
+                        <div class="field-value">
+                            <label class="control-label"><strong>{{visitTypePrice}}</strong></label>
+                        </div>
                     </div>
 
 
-                    <!-- <span ng-if="visitControl.selectedVisitType.name=='Proxy'">Rs 20</span>-->
+                        <!-- <span ng-if="visitControl.selectedVisitType.name=='Proxy'">Rs 20</span>-->
                 <div class="submit-btn-container">
 
-                    <button type="button" class="cancel" tabindex="-1" ng-show="::canCloseVisit" ng-click="closeVisitIfDischarged()">{{ ::'REGISTRATION_LABEL_CLOSE_VISIT' | translate}}</button>
+                   <br> <button type="button" class="cancel" tabindex="-1" ng-show="::canCloseVisit" ng-click="closeVisitIfDischarged()">{{ ::'REGISTRATION_LABEL_CLOSE_VISIT' | translate}}</button>
                     <div class="right">
                         <button ng-click="back()" accesskey="{{ ::'REGISTRATION_BACK_ACCESS_KEY' | translate}}" ng-bind-html="::'REGISTRATION_LABEL_BACK' | translate"></button>
                         <button ng-click="submit()" class="confirm" accesskey="{{ ::'REGISTRATION_SAVE_ACCESS_KEY' | translate}}" ng-bind-html="::'REGISTRATION_LABEL_SAVE' | translate"></button>

@@ -393,41 +393,8 @@ angular.module('bahmni.registration')
 
 
 
-            var isMemberEligible = function (nhisNumber) {
-                var deferred = $q.defer();
-                visitService.isEligible(nhisNumber).then(function (response) {
-                    if (response) {
-                        // $scope.nhisID = response.data.nhisId;
-                        $scope.nhisID = nhisNumber;
-                        $scope.eligibleData = response.data.eligibilityBalance;
 
-                        deferred.resolve(response);
-                    } else {
-                        deferred.resolve();
-                    }
-                }).catch(function (error) {
-
-                    messagingService.showMessage("error", "No Internet connection Could Not fetch Eligibility Detail");
-                    deferred.resolve();
-                });
-            };
-            var displayInfo = function (nhisNumber) {
-                var deferred = $q.defer();
-                patientServiceStrategy.getValid(nhisNumber).then(function (response) {
-                    if (response) {
-                        $scope.familyName = response.data.familyName;
-                        $scope.givenName = response.data.givenName;
-                        $scope.gender = response.data.gender;
-
-                        deferred.resolve(response);
-                    } else {
-                        deferred.resolve();
-
-                    }
-                });
-            };
-
-            spinner.forPromise($q.all([isMemberEligible(), getPatient(), getActiveEncounter(), searchActiveVisitsPromise()])
+            spinner.forPromise($q.all([getPatient(), getActiveEncounter(), searchActiveVisitsPromise()])
 
                 .then(function () {
                     getAllForms().then(function () {

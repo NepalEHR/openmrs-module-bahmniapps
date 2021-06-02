@@ -13,21 +13,17 @@ angular.module('bahmni.registration')
             var selectedProvider = $rootScope.currentProvider;
             var regEncounterTypeUuid = $rootScope.regEncounterConfiguration.encounterTypes[Bahmni.Registration.Constants.registrationEncounterType];
             var visitLocationUuid = $rootScope.visitLocation;
-
-
-
             var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
             var defaultVisitType = $rootScope.regEncounterConfiguration.getDefaultVisitType(loginLocationUuid);
             defaultVisitType = defaultVisitType || appService.getAppDescriptor().getConfigValue('defaultVisitType');
 
-
-         $scope.visitControl = new Bahmni.Common.VisitControl(
+            $scope.visitControl = new Bahmni.Common.VisitControl(
                 $rootScope.regEncounterConfiguration.getVisitTypesAsArray(),
-                defaultVisitType,encounterService, $translate, visitService, patientService
+                defaultVisitType, encounterService, $translate, visitService, patientService
             );
 
             $scope.visitControl.onStartVisit = function () {
-                $scope.setSubmitSource('startVisit');
+                $scope.setSubmitSource( 'startVisit' );
             };
 
             $scope.setSubmitSource = function (source) {
@@ -37,8 +33,6 @@ angular.module('bahmni.registration')
             $scope.showStartVisitButton = function () {
                 return showStartVisitButton;
             };
-
-
 
             var getPatient = function () {
                 var deferred = $q.defer();
@@ -51,7 +45,7 @@ angular.module('bahmni.registration')
                 return deferred.promise;
             };
 
-           var getActiveEncounter = function () {
+            var getActiveEncounter = function () {
                 var deferred = $q.defer();
                 encounterService.find({
                     "patientUuid": patientUuid,
@@ -73,34 +67,29 @@ angular.module('bahmni.registration')
                             return type.uuid === visitTypeUuid;
 
                         });
-                       if (visitType != null && visitType != undefined) {
+                        if (visitType != null && visitType != undefined) {
 
 
-                           if (visitType.display === 'OPD') {
-                               $scope.visitTypePrice = "Rs 20";
-                           }
-                           else if (visitType.display === 'Proxy') {
-                               $scope.visitTypePrice = "Rs 50";
-                           }
-                           else if (visitType.display === 'Follow up') {
-                               $scope.visitTypePrice = "Rs 5";
-                           }
-                           else if (visitType.display === 'ANC') {
-                               $scope.visitTypePrice = "Rs 90";
+                            if (visitType.display === 'OPD') {
+                                $scope.visitTypePrice = "Rs 20";
+                            } else if (visitType.display === 'Proxy') {
+                                $scope.visitTypePrice = "Rs 50";
+                            } else if (visitType.display === 'Follow up') {
+                                $scope.visitTypePrice = "Rs 5";
+                            } else if (visitType.display === 'ANC') {
+                                $scope.visitTypePrice = "Rs 90";
 
-                           }
-                           else if (visitType.display === 'Emergency') {
-                               $scope.visitTypePrice = "Rs 100";
+                            } else if (visitType.display === 'Emergency') {
+                                $scope.visitTypePrice = "Rs 100";
 
-                           } else if (visitType.display === 'IPD') {
-                               $scope.visitTypePrice = "Rs 40";
+                            } else if (visitType.display === 'IPD') {
+                                $scope.visitTypePrice = "Rs 40";
 
-                           }
+                            }
 
-                       }
+                        }
 
                     });
-
 
 
                 });
@@ -163,7 +152,10 @@ angular.module('bahmni.registration')
                 var createPromise = encounterService.create($scope.encounter);
                 spinner.forPromise(createPromise);
                 return createPromise.then(function (response) {
-                    var messageParams = {encounterUuid: response.data.encounterUuid, encounterType: response.data.encounterType};
+                    var messageParams = {
+                        encounterUuid: response.data.encounterUuid,
+                        encounterType: response.data.encounterType
+                    };
                     auditLogService.log(patientUuid, 'EDIT_ENCOUNTER', messageParams, 'MODULE_LABEL_REGISTRATION_KEY');
                     var visitType, visitTypeUuid;
                     visitTypeUuid = response.data.visitTypeUuid;
@@ -390,8 +382,6 @@ angular.module('bahmni.registration')
                     });
                 }
             };
-
-
 
 
             spinner.forPromise($q.all([getPatient(), getActiveEncounter(), searchActiveVisitsPromise()])

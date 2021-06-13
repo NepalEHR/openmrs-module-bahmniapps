@@ -4,7 +4,6 @@ angular.module('bahmni.registration')
     .controller('VisitController', ['$window', '$scope', '$rootScope', '$state', '$bahmniCookieStore', 'patientService', 'encounterService', '$stateParams', 'spinner', '$timeout', '$q', 'appService', 'openmrsPatientMapper', 'contextChangeHandler', 'messagingService', 'sessionService', 'visitService', '$location', '$translate',
         'auditLogService', 'formService', 'patientServiceStrategy',
         function ($window, $scope, $rootScope, $state, $bahmniCookieStore, patientService, encounterService, $stateParams, spinner, $timeout, $q, appService, openmrsPatientMapper, contextChangeHandler, messagingService, sessionService, visitService, $location, $translate, auditLogService, formService, patientServiceStrategy) {
-
             var vm = this;
             var patientUuid = $stateParams.patientUuid;
             var extensions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.conceptSetGroup.observations", "config");
@@ -16,7 +15,6 @@ angular.module('bahmni.registration')
             var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
             var defaultVisitType = $rootScope.regEncounterConfiguration.getDefaultVisitType(loginLocationUuid);
             defaultVisitType = defaultVisitType || appService.getAppDescriptor().getConfigValue('defaultVisitType');
-
 
             $scope.visitControl = new Bahmni.Common.VisitControl(
                 $rootScope.regEncounterConfiguration.getVisitTypesAsArray(),
@@ -64,17 +62,15 @@ angular.module('bahmni.registration')
                     $scope.observations = response.data.observations;
                     var visitTypeUuid = response.data.visitTypeUuid;
 
-                    visitService.getVisitType().then(function (visitTypeResponse) {
-
-                        var visitType = _.find(visitTypeResponse.data.results, function (type) {
-
-
+                    visitService.getVisitType().then(function (visitTypeResponse)
+                    {
+                        var visitType = _.find(visitTypeResponse.data.results, function (type)
+                        {
                             return type.uuid === visitTypeUuid;
-
                         });
-                        if (visitType != null && visitType != undefined) {
 
-
+                        if (visitType != null && visitType != undefined)
+                        {
                             if (visitType.display === 'OPD') {
                                 $scope.visitTypePrice = "Rs 20";
                             } else if (visitType.display === 'Proxy') {
@@ -83,20 +79,13 @@ angular.module('bahmni.registration')
                                 $scope.visitTypePrice = "Rs 5";
                             } else if (visitType.display === 'ANC') {
                                 $scope.visitTypePrice = "Rs 90";
-
                             } else if (visitType.display === 'Emergency') {
                                 $scope.visitTypePrice = "Rs 100";
-
                             } else if (visitType.display === 'IPD') {
                                 $scope.visitTypePrice = "Rs 40";
-
                             }
-
                         }
-
                     });
-
-
                 });
                 return deferred.promise;
             };
@@ -108,11 +97,8 @@ angular.module('bahmni.registration')
                         $scope.conceptSets = extensions.map(function (extension) {
                             return new Bahmni.ConceptSet.ConceptSetSection(extension, $rootScope.currentUser, {}, [], {});
                         });
-
-
                         $scope.observationForms = getObservationForms(formExtensions, response.data);
                         $scope.conceptSets = $scope.conceptSets.concat($scope.observationForms);
-
                         $scope.availableConceptSets = $scope.conceptSets.filter(function (conceptSet) {
                             return conceptSet.isAvailable($scope.context);
                         });
@@ -122,7 +108,6 @@ angular.module('bahmni.registration')
             };
 
             $scope.hideFields = appService.getAppDescriptor().getConfigValue("hideFields");
-
             $scope.back = function () {
                 $state.go('patient.edit');
             };
@@ -165,12 +150,9 @@ angular.module('bahmni.registration')
                     var visitType, visitTypeUuid;
                     visitTypeUuid = response.data.visitTypeUuid;
                     visitService.getVisitType().then(function (response) {
-
                         visitType = _.find(response.data.results, function (type) {
-
                             if (type.uuid === visitTypeUuid) {
                                 return type;
-
                             }
                         });
                     });
@@ -395,17 +377,16 @@ angular.module('bahmni.registration')
                         // $scope.nhisID = response.data.nhisId;
                         $scope.nhisID = nhisNumber;
                         $scope.eligibleData = response.data.eligibilityBalance;
-
                         deferred.resolve(response);
                     } else {
                         deferred.resolve();
                     }
                 }).catch(function (error) {
-
                     messagingService.showMessage("error", "No Internet connection Could Not fetch Eligibility Detail");
                     deferred.resolve();
                 });
             };
+
             var displayInfo = function (nhisNumber) {
                 var deferred = $q.defer();
                 patientServiceStrategy.getValid(nhisNumber).then(function (response) {
@@ -413,11 +394,9 @@ angular.module('bahmni.registration')
                         $scope.familyName = response.data.familyName;
                         $scope.givenName = response.data.givenName;
                         $scope.gender = response.data.gender;
-
                         deferred.resolve(response);
                     } else {
                         deferred.resolve();
-
                     }
                 });
             };
@@ -429,4 +408,3 @@ angular.module('bahmni.registration')
                     });
                 }));
         }]);
-g

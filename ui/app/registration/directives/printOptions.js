@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .directive('printOptions', ['$rootScope', 'registrationCardPrinter', 'spinner', 'appService', '$filter',
-        function ($rootScope, registrationCardPrinter, spinner, appService, $filter) {
+    .directive('printOptions', ['$rootScope', 'registrationCardPrinter', 'spinner', 'appService', '$filter', 'visitService',
+        function ($rootScope, registrationCardPrinter, spinner, appService, $filter, visitService) {
             var controller = function ($scope) {
                 $scope.printOptions = appService.getAppDescriptor().getConfigValue("printOptions");
                 $scope.defaultPrint = $scope.printOptions && $scope.printOptions[0];
@@ -21,7 +21,8 @@ angular.module('bahmni.registration')
                 };
 
                 $scope.print = function (option) {
-                    return registrationCardPrinter.print(option.templateUrl, $scope.patient, mapRegistrationObservations(), $scope.encounterDateTime);
+                    var visitType = {};
+                    return registrationCardPrinter.print(option.templateUrl, $scope.patient, $scope.visitTypePrice, mapRegistrationObservations(), $scope.encounterDateTime);
                 };
 
                 $scope.buttonText = function (option, type) {

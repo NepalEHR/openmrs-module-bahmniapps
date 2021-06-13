@@ -14,8 +14,9 @@ Bahmni.Common.VisitControl = function (visitTypes, defaultVisitTypeName, encount
     };
 
     self.startVisit = function (visitType) {
-        self.onStartVisit();
         self.selectedVisitType = visitType;
+        self.onStartVisit();
+
     };
 
     self.createVisitOnly = function (patientUuid, visitLocationUuid) {

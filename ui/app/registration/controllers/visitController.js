@@ -4,6 +4,7 @@ angular.module('bahmni.registration')
     .controller('VisitController', ['$window', '$scope', '$rootScope', '$state', '$bahmniCookieStore', 'patientService', 'encounterService', '$stateParams', 'spinner', '$timeout', '$q', 'appService', 'openmrsPatientMapper', 'contextChangeHandler', 'messagingService', 'sessionService', 'visitService', '$location', '$translate',
         'auditLogService', 'formService', 'patientServiceStrategy',
         function ($window, $scope, $rootScope, $state, $bahmniCookieStore, patientService, encounterService, $stateParams, spinner, $timeout, $q, appService, openmrsPatientMapper, contextChangeHandler, messagingService, sessionService, visitService, $location, $translate, auditLogService, formService, patientServiceStrategy) {
+
             var vm = this;
             var patientUuid = $stateParams.patientUuid;
             var extensions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.conceptSetGroup.observations", "config");
@@ -12,6 +13,27 @@ angular.module('bahmni.registration')
             var selectedProvider = $rootScope.currentProvider;
             var regEncounterTypeUuid = $rootScope.regEncounterConfiguration.encounterTypes[Bahmni.Registration.Constants.registrationEncounterType];
             var visitLocationUuid = $rootScope.visitLocation;
+            var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
+            var defaultVisitType = $rootScope.regEncounterConfiguration.getDefaultVisitType(loginLocationUuid);
+            defaultVisitType = defaultVisitType || appService.getAppDescriptor().getConfigValue('defaultVisitType');
+
+
+            $scope.visitControl = new Bahmni.Common.VisitControl(
+                $rootScope.regEncounterConfiguration.getVisitTypesAsArray(),
+                defaultVisitType, encounterService, $translate, visitService, patientService
+            );
+
+            $scope.visitControl.onStartVisit = function () {
+                $scope.setSubmitSource('startVisit');
+            };
+
+            $scope.setSubmitSource = function (source) {
+                $scope.actions.submitSource = source;
+            };
+
+            $scope.showStartVisitButton = function () {
+                return showStartVisitButton;
+            };
 
             var getPatient = function () {
                 var deferred = $q.defer();
@@ -40,6 +62,41 @@ angular.module('bahmni.registration')
                     deferred.resolve(response);
                     $scope.encounterUuid = response.data.encounterUuid;
                     $scope.observations = response.data.observations;
+                    var visitTypeUuid = response.data.visitTypeUuid;
+
+                    visitService.getVisitType().then(function (visitTypeResponse) {
+
+                        var visitType = _.find(visitTypeResponse.data.results, function (type) {
+
+
+                            return type.uuid === visitTypeUuid;
+
+                        });
+                        if (visitType != null && visitType != undefined) {
+
+
+                            if (visitType.display === 'OPD') {
+                                $scope.visitTypePrice = "Rs 20";
+                            } else if (visitType.display === 'Proxy') {
+                                $scope.visitTypePrice = "Rs 50";
+                            } else if (visitType.display === 'Follow up') {
+                                $scope.visitTypePrice = "Rs 5";
+                            } else if (visitType.display === 'ANC') {
+                                $scope.visitTypePrice = "Rs 90";
+
+                            } else if (visitType.display === 'Emergency') {
+                                $scope.visitTypePrice = "Rs 100";
+
+                            } else if (visitType.display === 'IPD') {
+                                $scope.visitTypePrice = "Rs 40";
+
+                            }
+
+                        }
+
+                    });
+
+
                 });
                 return deferred.promise;
             };
@@ -51,6 +108,7 @@ angular.module('bahmni.registration')
                         $scope.conceptSets = extensions.map(function (extension) {
                             return new Bahmni.ConceptSet.ConceptSetSection(extension, $rootScope.currentUser, {}, [], {});
                         });
+
 
                         $scope.observationForms = getObservationForms(formExtensions, response.data);
                         $scope.conceptSets = $scope.conceptSets.concat($scope.observationForms);
@@ -83,6 +141,7 @@ angular.module('bahmni.registration')
                     orders: [],
                     drugOrders: [],
                     extensions: {}
+
                 };
 
                 $bahmniCookieStore.put(Bahmni.Common.Constants.grantProviderAccessDataCookieName, selectedProvider, {
@@ -98,14 +157,20 @@ angular.module('bahmni.registration')
                 var createPromise = encounterService.create($scope.encounter);
                 spinner.forPromise(createPromise);
                 return createPromise.then(function (response) {
-                    var messageParams = {encounterUuid: response.data.encounterUuid, encounterType: response.data.encounterType};
+                    var messageParams = {
+                        encounterUuid: response.data.encounterUuid,
+                        encounterType: response.data.encounterType
+                    };
                     auditLogService.log(patientUuid, 'EDIT_ENCOUNTER', messageParams, 'MODULE_LABEL_REGISTRATION_KEY');
                     var visitType, visitTypeUuid;
                     visitTypeUuid = response.data.visitTypeUuid;
                     visitService.getVisitType().then(function (response) {
+
                         visitType = _.find(response.data.results, function (type) {
+
                             if (type.uuid === visitTypeUuid) {
                                 return type;
+
                             }
                         });
                     });
@@ -281,6 +346,7 @@ angular.module('bahmni.registration')
 
             var getConceptSet = function () {
                 var visitType = $scope.encounterConfig.getVisitTypeByUuid($scope.visitTypeUuid);
+
                 $scope.context = {visitType: visitType, patient: $scope.patient};
             };
 
@@ -329,13 +395,13 @@ angular.module('bahmni.registration')
                         // $scope.nhisID = response.data.nhisId;
                         $scope.nhisID = nhisNumber;
                         $scope.eligibleData = response.data.eligibilityBalance;
-                        console.log(response);
+
                         deferred.resolve(response);
                     } else {
                         deferred.resolve();
                     }
                 }).catch(function (error) {
-                    console.log(error);
+
                     messagingService.showMessage("error", "No Internet connection Could Not fetch Eligibility Detail");
                     deferred.resolve();
                 });
@@ -347,10 +413,11 @@ angular.module('bahmni.registration')
                         $scope.familyName = response.data.familyName;
                         $scope.givenName = response.data.givenName;
                         $scope.gender = response.data.gender;
-                        console.log(response);
+
                         deferred.resolve(response);
                     } else {
                         deferred.resolve();
+
                     }
                 });
             };
@@ -362,3 +429,4 @@ angular.module('bahmni.registration')
                     });
                 }));
         }]);
+g

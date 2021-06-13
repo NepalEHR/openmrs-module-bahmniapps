@@ -47,95 +47,106 @@
                         </div>
                     </section>
                     <div ng-if="nhisID != null">
-                    <section class="observation-section">
-                        <div class="registraion_legend">
-                            <span class="mylegend" >Insurance Detail</span>
-                        </div>
-                        <div class="form-field fl">
-                            <div class="form-field fl">
-                                <div class="field-attribute">
-                                    <label for="NHISNumber">NHIS Number: </label>
-                                </div>
-                                <div class="field-value">
-                                    <label class="control-label"><strong>{{nhisID}} </strong></label>
-                                </div>
+                        <section class="observation-section">
+                            <div class="registraion_legend">
+                                <span class="mylegend" >Insurance Detail</span>
                             </div>
                             <div class="form-field fl">
+                                <div class="form-field fl">
+                                    <div class="field-attribute">
+                                        <label for="NHISNumber">NHIS Number: </label>
+                                    </div>
+                                    <div class="field-value">
+                                        <label class="control-label"><strong>{{nhisID}} </strong></label>
+                                    </div>
+                                </div>
+                                <div class="form-field fl">
+                                    <div class="field-attribute">
+                                        <label for="First Name">First Name: </label>
+                                    </div>
+                                    <div class="field-value">
+                                        <label class="control-label"><strong>{{givenName}} </strong></label>
+                                    </div>
+                                </div>
+                                <div class="form-field fl">
+                                    <div class="field-attribute">
+                                        <label for="Last Name">Last Name: </label>
+                                    </div>
+                                    <div class="field-value">
+                                        <label class="control-label"><strong>{{familyName}} </strong></label>
+                                    </div>
+                                </div> <div class="form-field fl">
                                 <div class="field-attribute">
-                                    <label for="First Name">First Name: </label>
+                                    <label for="Gender">Gender: </label>
                                 </div>
                                 <div class="field-value">
-                                    <label class="control-label"><strong>{{givenName}} </strong></label>
-                                </div>
-                            </div>
-                            <div class="form-field fl">
-                                <div class="field-attribute">
-                                    <label for="Last Name">Last Name: </label>
-                                </div>
-                                <div class="field-value">
-                                    <label class="control-label"><strong>{{familyName}} </strong></label>
-                                </div>
-                            </div> <div class="form-field fl">
-                            <div class="field-attribute">
-                                <label for="Gender">Gender: </label>
-                            </div>
-                            <div class="field-value">
-                                <label class="control-label"><strong>{{gender}} </strong></label>
-                            </div>
-                        </div>
-
-                            <div class="form-field fl">
-                                <div class="field-attribute">
-                                    <label for="Category">Category: </label>
-                                </div>
-                                <div class="field-value">
-                                    <ul class="list-group">
-                                        <li class="list-group-item"
-                                            ng-repeat="values in eligibleData">
-                                            <label class="control-label"><strong>{{values.category}}</strong></label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="form-field fl">
-                                <div class="field-attribute">
-                                    <label for="Balance">Balance: </label>
-                                </div>
-                                <div class="field-value">
-                                    <ul class="list-group">
-                                        <li class="list-group-item"
-                                            ng-repeat="values in eligibleData">
-                                    <label class="control-label"><strong>{{values.benefitBalance}}</strong></label>
-                                        </li>
-                                    </ul>
+                                    <label class="control-label"><strong>{{gender}} </strong></label>
                                 </div>
                             </div>
 
-                            <div class="form-field fl">
-                                <div class="field-attribute">
-                                    <label for="ValidDate">Valid Date: </label>
+                                <div class="form-field fl">
+                                    <div class="field-attribute">
+                                        <label for="Category">Category: </label>
+                                    </div>
+                                    <div class="field-value">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"
+                                                ng-repeat="values in eligibleData">
+                                                <label class="control-label"><strong>{{values.category}}</strong></label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="field-value">
-                                    <ul class="list-group">
-                                        <li class="list-group-item"
-                                            ng-repeat="values in eligibleData">
-                                    <label class="control-label"><strong>{{values.validDate}}</strong></label>
-                                        </li>
-                                    </ul>
+                                <div class="form-field fl">
+                                    <div class="field-attribute">
+                                        <label for="Balance">Balance: </label>
+                                    </div>
+                                    <div class="field-value">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"
+                                                ng-repeat="values in eligibleData">
+                                                <label class="control-label"><strong>{{values.benefitBalance}}</strong></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="form-field fl">
+                                    <div class="field-attribute">
+                                        <label for="ValidDate">Valid Date: </label>
+                                    </div>
+                                    <div class="field-value">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"
+                                                ng-repeat="values in eligibleData">
+                                                <label class="control-label"><strong>{{values.validDate}}</strong></label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
                     </div>
 
-                </div>
-                <div class="submit-btn-container">
-                    <button type="button" class="cancel" tabindex="-1" ng-show="::canCloseVisit" ng-click="closeVisitIfDischarged()">{{ ::'REGISTRATION_LABEL_CLOSE_VISIT' | translate}}</button>
-                    <div class="right">
-                        <button ng-click="back()" accesskey="{{ ::'REGISTRATION_BACK_ACCESS_KEY' | translate}}" ng-bind-html="::'REGISTRATION_LABEL_BACK' | translate"></button>
-                        <button ng-click="submit()" class="confirm" accesskey="{{ ::'REGISTRATION_SAVE_ACCESS_KEY' | translate}}" ng-bind-html="::'REGISTRATION_LABEL_SAVE' | translate"></button>
+                   <div class="form-field photocontainer-spacing clearfix">
+                        <div class="field-attribute">
+                            <label class="control-label" for="Charge">Charge:</label>
+                        </div>
+                        <div class="field-value">
+                            <label class="control-label"> <strong>{{visitTypePrice}}</strong></label>
+                        </div>
                     </div>
-                </div>
+
+
+
+                    <!-- <span ng-if="visitControl.selectedVisitType.name=='Proxy'">Rs 20</span>-->
+                    <div class="submit-btn-container">
+                        <button type="button" class="cancel" tabindex="-1" ng-show="::canCloseVisit" ng-click="closeVisitIfDischarged()">{{ ::'REGISTRATION_LABEL_CLOSE_VISIT' | translate}}</button>
+                        <div class="right">
+                            <button ng-click="back()" accesskey="{{ ::'REGISTRATION_BACK_ACCESS_KEY' | translate}}" ng-bind-html="::'REGISTRATION_LABEL_BACK' | translate"></button>
+                            <button ng-click="submit()" class="confirm" accesskey="{{ ::'REGISTRATION_SAVE_ACCESS_KEY' | translate}}" ng-bind-html="::'REGISTRATION_LABEL_SAVE' | translate"></button>
+                        </div>
+                    </div>
             </form>
             <br>
         </div>

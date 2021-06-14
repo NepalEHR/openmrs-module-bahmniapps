@@ -62,14 +62,9 @@ angular.module('bahmni.registration')
                     visitService.getVisitType().then(function (visitTypeResponse) {
 
                         var visitType = _.find(visitTypeResponse.data.results, function (type) {
-
-
                             return type.uuid === visitTypeUuid;
-
                         });
                         if (visitType != null && visitType != undefined) {
-
-
                             if (visitType.display === 'OPD') {
                                 $scope.visitTypePrice = "Rs 20";
                             } else if (visitType.display === 'Proxy') {
@@ -78,20 +73,13 @@ angular.module('bahmni.registration')
                                 $scope.visitTypePrice = "Rs 5";
                             } else if (visitType.display === 'ANC') {
                                 $scope.visitTypePrice = "Rs 90";
-
                             } else if (visitType.display === 'Emergency') {
                                 $scope.visitTypePrice = "Rs 100";
-
                             } else if (visitType.display === 'IPD') {
                                 $scope.visitTypePrice = "Rs 40";
-
                             }
-
                         }
-
                     });
-
-
                 });
                 return deferred.promise;
             };
@@ -382,10 +370,7 @@ angular.module('bahmni.registration')
                     });
                 }
             };
-
-
             spinner.forPromise($q.all([getPatient(), getActiveEncounter(), searchActiveVisitsPromise()])
-
                 .then(function () {
                     getAllForms().then(function () {
                         getConceptSet();

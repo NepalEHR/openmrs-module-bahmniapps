@@ -41,6 +41,14 @@ angular.module('bahmni.clinical')
                     }
                     $scope.patientContext.gender = $rootScope.genderMap[$scope.patientContext.gender];
                     $scope.patientContext.name = [$scope.patient.givenName, $scope.patient.familyName].join(' ');
+                   
+                    if ($scope.patient['NHIS Number'] != null) {
+                        $scope.patientContext.nhisNumber = $scope.patient['NHIS Number'].value;
+                    }
+                    if ($scope.patient['NHIS Member Active'] != null) {
+                        $scope.patientContext.nhisMember = $scope.patient['NHIS Member'].value;
+                    }
+                    
                 });
 
                 $scope.initPromise.then(setMiddleNameWhenConfigured);

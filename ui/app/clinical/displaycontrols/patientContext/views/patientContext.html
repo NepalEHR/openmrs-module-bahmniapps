@@ -21,7 +21,8 @@
             <li ng-repeat="(key, value) in patientContext.programAttributes">
                 {{value.description}}: {{value.value}}
             </li>
-            <li>NHIS Number: {{patientContext.nhisNumber}}</li>
+            <li ng-if="patientContext.nhisNumber">NHIS Number: {{patientContext.nhisNumber}}</li>
+            <li ng-if="patientContext.nhisMemberActive">NHIS Member: {{patientContext.nhisMemberActive}}</li>
         </ul>
     </div>
 </div>

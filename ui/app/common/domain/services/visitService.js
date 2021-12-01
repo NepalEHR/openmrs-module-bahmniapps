@@ -18,6 +18,12 @@ angular.module('bahmni.common.domain')
                 withCredentials: true
             });
         };
+        
+        this.changeVisit = function (visitId, patientId) {
+            return $http.post(Bahmni.Common.Constants.changeVisit + '?visitId=' + visitId + '&patientId=' +  patientId,  {
+                withCredentials: true
+            });
+        };
 
         this.endVisitAndCreateEncounter = function (visitUuid, bahmniEncounterTransaction) {
             return $http.post(Bahmni.Common.Constants.endVisitAndCreateEncounterUrl + '?visitUuid=' + visitUuid, bahmniEncounterTransaction, {

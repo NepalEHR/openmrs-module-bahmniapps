@@ -88,40 +88,31 @@ angular.module('bahmni.registration')
             };
             
             $scope.updateToEmergency = function () {
-                    var confirmed = $window.confirm("Are you sure?");
-                    if (confirmed) {
                         var visitId = 4;
                         visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
                             $state.reload();
                         });
-                    }
-                };
+                    };
              $scope.updateToOPD = function () {
-                var confirmed = $window.confirm("Are you sure?");
-                if (confirmed) {
                     var visitId=5;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();                   
                     });
-                }
+         
             };
             $scope.updateToFollowUp = function () {
-                var confirmed = $window.confirm("Are you sure?");
-                if (confirmed) {
                     var visitId=9;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();                   
                     });
-                }
+                
             };
             $scope.updateToFree = function () {
-                var confirmed = $window.confirm("Are you sure?");
-                if (confirmed) {
-                    var visitId=11;
+                   var visitId=11;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();                   
                     });
-                }
+                
             };
 
             var getAllForms = function () {

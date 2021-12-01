@@ -70,13 +70,16 @@ angular.module('bahmni.registration')
                             } else if (visitType.display === 'Proxy') {
                                 $scope.visitTypePrice = "Rs 50";
                             } else if (visitType.display === 'Follow up') {
-                                $scope.visitTypePrice = "Rs 5";
+                                $scope.visitTypePrice = "Rs 10";
                             } else if (visitType.display === 'ANC') {
                                 $scope.visitTypePrice = "Rs 90";
                             } else if (visitType.display === 'Emergency') {
-                                $scope.visitTypePrice = "Rs 100";
+                                $scope.visitTypePrice = "Rs 50";
                             } else if (visitType.display === 'IPD') {
                                 $scope.visitTypePrice = "Rs 40";
+                            }
+                            else if (visitType.display === 'Free Visit') {
+                                $scope.visitTypePrice = "Rs 0";
                             }
                         }
                     });

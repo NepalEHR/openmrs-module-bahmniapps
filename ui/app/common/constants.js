@@ -93,6 +93,7 @@ Bahmni.Common = Bahmni.Common || {};
         conceptSearchByFullNameUrl: RESTWS_V1 + "/concept?s=byFullySpecifiedName",
         visitUrl: RESTWS_V1 + "/visit",
         endVisitUrl: BAHMNI_CORE + "/visit/endVisit",
+        changeVisit: BAHMNI_CORE + "/visit/updateVisit",
         endVisitAndCreateEncounterUrl: BAHMNI_CORE + "/visit/endVisitAndCreateEncounter",
         visitTypeUrl: RESTWS_V1 + "/visittype",
         patientImageUrlByPatientUuid: RESTWS_V1 + "/patientImage?patientUuid=",

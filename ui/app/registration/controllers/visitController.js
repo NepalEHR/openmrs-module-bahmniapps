@@ -68,15 +68,15 @@ angular.module('bahmni.registration')
                             if (visitType.display === 'OPD') {
                                 $scope.visitTypePrice = "Rs 20";
                             } else if (visitType.display === 'Proxy') {
-                                $scope.visitTypePrice = "Rs 50";
+                                $scope.visitTypePrice = "Rs 0";
                             } else if (visitType.display === 'Follow up') {
                                 $scope.visitTypePrice = "Rs 10";
                             } else if (visitType.display === 'ANC') {
-                                $scope.visitTypePrice = "Rs 90";
+                                $scope.visitTypePrice = "Rs 0";
                             } else if (visitType.display === 'Emergency') {
                                 $scope.visitTypePrice = "Rs 50";
                             } else if (visitType.display === 'IPD') {
-                                $scope.visitTypePrice = "Rs 40";
+                                $scope.visitTypePrice = "Rs 0";
                             }
                             else if (visitType.display === 'Free Visit') {
                                 $scope.visitTypePrice = "Rs 0";
@@ -108,7 +108,7 @@ angular.module('bahmni.registration')
             $scope.updateToFollowUp = function () {
                 var confirmed = $window.confirm("Are you sure?");
                 if (confirmed) {
-                    var visitId=6;
+                    var visitId=9;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();                   
                     });
@@ -117,7 +117,7 @@ angular.module('bahmni.registration')
             $scope.updateToFree = function () {
                 var confirmed = $window.confirm("Are you sure?");
                 if (confirmed) {
-                    var visitId=3;
+                    var visitId=11;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();                   
                     });

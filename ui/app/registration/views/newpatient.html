@@ -38,11 +38,7 @@
                                 <div class="field-attribute hasOldIdentifier-field-attribute">
                                     <label for="hasOldIdentifier" class="control-label">{{::'REGISTRATION_LABEL_ENTER_ID' | translate}}</label>
                                 </div>
-
-                                {{::visitControl.name[0]==='OPD'}}
-
-
-                                <div class="field-value">
+                                 <div class="field-value">
                                     <input class="input-label-inline" ng-show="::showEnterID" type="checkbox" id="hasOldIdentifier" ng-model="patient.primaryIdentifier.hasOldIdentifier"
                                            ng-change="patient.primaryIdentifier.clearRegistrationNumber()">
                                 </div>

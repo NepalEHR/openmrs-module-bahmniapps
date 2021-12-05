@@ -2,8 +2,8 @@
 
 angular.module('bahmni.registration')
     .controller('VisitController', ['$window', '$scope', '$rootScope', '$state', '$bahmniCookieStore', 'patientService', 'encounterService', '$stateParams', 'spinner', '$timeout', '$q', 'appService', 'openmrsPatientMapper', 'contextChangeHandler', 'messagingService', 'sessionService', 'visitService', '$location', '$translate',
-        'auditLogService', 'formService', 'patientServiceStrategy',
-        function ($window, $scope, $rootScope, $state, $bahmniCookieStore, patientService, encounterService, $stateParams, spinner, $timeout, $q, appService, openmrsPatientMapper, contextChangeHandler, messagingService, sessionService, visitService, $location, $translate, auditLogService, formService, patientServiceStrategy) {
+        'auditLogService', 'formService', 'patientServiceStrategy','toaster',
+        function ($window, $scope, $rootScope, $state, $bahmniCookieStore, patientService, encounterService, $stateParams, spinner, $timeout, $q, appService, openmrsPatientMapper, contextChangeHandler, messagingService, sessionService, visitService, $location, $translate, auditLogService, formService, patientServiceStrategy,toaster) {
 
             var vm = this;
             var patientUuid = $stateParams.patientUuid;
@@ -91,26 +91,30 @@ angular.module('bahmni.registration')
                         var visitId = 4;
                         visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
                             $state.reload();
+                            toaster.success({title: "EMERGENCY", body:"Changed to ER"});
                         });
                     };
              $scope.updateToOPD = function () {
                     var visitId=5;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
-                         $state.reload();                   
+                         $state.reload();
+                        toaster.success({title: "OPD", body:"Changed to OPD"});
                     });
          
             };
             $scope.updateToFollowUp = function () {
                     var visitId=9;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
-                         $state.reload();                   
+                         $state.reload();
+                        toaster.success({title: "FOLLOW UP", body:"Changed to Followup"});
                     });
                 
             };
             $scope.updateToFree = function () {
                    var visitId=11;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
-                         $state.reload();                   
+                         $state.reload();
+                        toaster.success({title: "FREE VISIT", body:"Changed to Free Visit"});
                     });
                 
             };

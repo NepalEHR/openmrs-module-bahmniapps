@@ -45,7 +45,7 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
-   "scripts": {
+  "scripts": {
     "test": "karma start test/config/karma.conf.js",
     "test:watch": "grunt karma:watch",
     "watch": "grunt watch",

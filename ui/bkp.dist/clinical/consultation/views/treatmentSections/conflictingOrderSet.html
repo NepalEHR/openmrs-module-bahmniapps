@@ -1,0 +1,19 @@
+<div class="revise-refill-modal-wrapper" aria-labelledby="dialog-label">
+	<span class="ngdialog-start"></span>
+
+	<span class="ngdialog-close"></span>
+	<div class="drug-details">
+		<p>The following drug orders are conflicting with order set you are trying to add.</p>
+
+		<div ng-repeat="drugOrder in ngDialogData.conflictingDrugOrders">
+		<strong class="drug-name">{{::$index+1}}. {{::drugOrder.getDisplayName()}}</strong> from 
+
+		<strong ng-if="displayNepaliDates">{{::drugOrder.effectiveStartDate | npDate}}</strong>
+		<strong ng-if="!displayNepaliDates">{{::drugOrder.effectiveStartDate | bahmniDate}}</strong> to 
+
+		<strong ng-if="displayNepaliDates">{{::drugOrder.effectiveStopDate | npDate}}</strong>
+		<strong ng-if="!displayNepaliDates">{{::drugOrder.effectiveStopDate | bahmniDate}}</strong>
+		</div>
+	</div>
+	<span class="ngdialog-end"></span>
+</div>

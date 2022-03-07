@@ -7,8 +7,7 @@ angular
         'bahmni.common.routeErrorHandler', 'bahmni.common.displaycontrol.pivottable', 'RecursionHelper', 'ngSanitize',
         'bahmni.common.uiHelper', 'bahmni.common.domain', 'ngDialog', 'pascalprecht.translate', 'ngCookies',
         'monospaced.elastic', 'bahmni.common.displaycontrol.hint', 'bahmni.common.attributeTypes',
-        'bahmni.common.models', 'bahmni.common.uicontrols',
-        'bahmni.common.displaycontrol.diagnosis','toaster'])
+        'bahmni.common.models', 'bahmni.common.uicontrols','bahmni.common.displaycontrol.diagnosis','toaster','monospaced.qrcode'])
     .config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$bahmniTranslateProvider', '$compileProvider', function ($urlRouterProvider, $stateProvider, $httpProvider, $bahmniTranslateProvider, $compileProvider) {
         $httpProvider.defaults.headers.common['Disable-WWW-Authenticate'] = true;
         $urlRouterProvider.otherwise('/search');

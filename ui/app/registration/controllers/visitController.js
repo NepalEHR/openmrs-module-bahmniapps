@@ -2,7 +2,7 @@
 
 angular.module('bahmni.registration')
     .controller('VisitController', ['$window', '$scope', '$rootScope', '$state', '$bahmniCookieStore', 'patientService', 'encounterService', '$stateParams', 'spinner', '$timeout', '$q', 'appService', 'openmrsPatientMapper', 'contextChangeHandler', 'messagingService', 'sessionService', 'visitService', '$location', '$translate',
-        'auditLogService', 'formService', 'patientServiceStrategy','toaster',
+        'auditLogService', 'formService', 'patientServiceStrategy', 'toaster',
         function ($window, $scope, $rootScope, $state, $bahmniCookieStore, patientService, encounterService, $stateParams, spinner, $timeout, $q, appService, openmrsPatientMapper, contextChangeHandler, messagingService, sessionService, visitService, $location, $translate, auditLogService, formService, patientServiceStrategy,toaster) {
 
             var vm = this;
@@ -66,7 +66,7 @@ angular.module('bahmni.registration')
                         });
                         if (visitType != null && visitType != undefined) {
                             if (visitType.display === 'OPD') {
-                                $scope.visitTypePrice = "Rs 20";
+                                $scope.visitTypePrice = "Rs 25";
                             } else if (visitType.display === 'Proxy') {
                                 $scope.visitTypePrice = "Rs 0";
                             } else if (visitType.display === 'Follow up') {
@@ -78,7 +78,7 @@ angular.module('bahmni.registration')
                             } else if (visitType.display === 'IPD') {
                                 $scope.visitTypePrice = "Rs 0";
                             }
-                            else if (visitType.display === 'Free Visit') {
+                            else if (visitType.display === 'Free') {
                                 $scope.visitTypePrice = "Rs 0";
                             }
                         }
@@ -86,37 +86,39 @@ angular.module('bahmni.registration')
                 });
                 return deferred.promise;
             };
-            
+
+
             $scope.updateToEmergency = function () {
                         var visitId = 4;
                         visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
                             $state.reload();
-                            toaster.success({title: "EMERGENCY", body:"Changed to ER"});
+
                         });
+                        toaster.success({title: "EMERGENCY", body:"Changed to ER"});
                     };
              $scope.updateToOPD = function () {
                     var visitId=5;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();
-                        toaster.success({title: "OPD", body:"Changed to OPD"});
+
                     });
-         
+                 toaster.success({title: "OPD", body:"Changed to OPD"});
             };
             $scope.updateToFollowUp = function () {
                     var visitId=9;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();
-                        toaster.success({title: "FOLLOW UP", body:"Changed to Followup"});
+
                     });
-                
+                toaster.success({title: "FOLLOW UP", body:"Changed to Followup"});
             };
             $scope.updateToFree = function () {
-                   var visitId=11;
+                   var visitId=10;
                     visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
                          $state.reload();
-                        toaster.success({title: "FREE VISIT", body:"Changed to Free Visit"});
+
                     });
-                
+                toaster.success({title: "FREE VISIT", body:"Changed to Free Visit"});
             };
 
             var getAllForms = function () {

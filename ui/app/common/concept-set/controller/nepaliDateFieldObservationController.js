@@ -1,20 +1,22 @@
 'use strict';
 
-angular.module('bahmni.common.conceptSet').controller('nepaliDateFieldObservationController', ['$scope', 'conceptSetService', function ($scope, conceptSetService) {
-    $scope.npToday = Bahmni.Common.Util.DateUtil.npToday();
-
-    $scope.handleNepaliDateUpdate = function (observation) {
+angular.module('bahmni.common.conceptSet').controller('nepaliDateFieldObservationController', ['$scope', 'conceptSetService','$rootScope',function ($scope, conceptSetService,$rootScope) {
+    $scope.npToday = Bahmni.Common.Util.DateUtil.npToday(), $scope.handleNepaliDateUpdate = function(observation) {
         if (observation.nepaliDate) {
-            var date = dateUpdateCommon(observation);
-            var month = date.getMonth() + 1;
-            if (month < 10) {
-                month = '0' + month;
-            }
-            observation.value = date.getFullYear() + "-" + month + "-" + date.getDate();
-        }
-    };
+           var date = dateUpdateCommon(observation),
+           month = date.getMonth() + 1;
+           month < 10 && (month = "0" + month), observation.value = date.getFullYear() + "-" + month + "-" + date.getDate();
+           var newEnglishDate = observation.value;
+           if (observation.label === 'Last menstrual period') {
+                $rootScope.$broadcast('menstrualToExpectedDateChanged', {
+                nepaliDate: observation.nepaliDate,
+                englishDate: newEnglishDate
 
-    $scope.handleNepaliDateTimeUpdate = function (observation) {
+                });
+           }
+        }
+    },
+     $scope.handleNepaliDateTimeUpdate = function (observation) {
         if (observation.nepaliDate) {
             if (observation.nepaliDate) {
                 observation.selectedDate = dateUpdateCommon(observation);

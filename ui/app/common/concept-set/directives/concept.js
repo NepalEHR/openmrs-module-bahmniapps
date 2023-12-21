@@ -97,6 +97,38 @@ angular.module('bahmni.common.conceptSet')
             return {
                 restrict: 'E',
                 compile: compile,
+                controller: ['$rootScope', '$scope', function($rootScope, $scope) {
+                     var alreadyAdded = false;
+                     var listener;
+
+         function updateDate(test) {
+            if ($scope.observation.label == 'Expected delivery date') {
+                var engDate = test.englishDate;
+                 var result = new Date(engDate);
+                  if (!alreadyAdded) {
+                        result.setDate(result.getDate() + 280);
+                        alreadyAdded = true;
+                  }
+                  var str = result.toISOString().substr(0, 10);
+                  test.englishDate = str;
+                  $scope.observation.value = str;
+                  var date = str.split("-");
+                  var bsDate = calendarFunctions.getBsDateByAdDate(parseInt(date[0]), parseInt(date[1]), parseInt(date[2]));
+                  var obsBsDate = calendarFunctions.bsDateFormat("%y-%m-%d", bsDate.bsYear, bsDate.bsMonth, bsDate.bsDate);
+                  var nepaliDate = obsBsDate;
+                  $scope.observation.nepaliDate = nepaliDate;
+                  alreadyAdded = false;
+            }
+         }
+
+         listener = $rootScope.$on('menstrualToExpectedDateChanged', function (e, test) {
+            updateDate(test);
+         });
+
+         $scope.$on('$destroy', function() {
+             listener();
+         });
+         }],
                 scope: {
                     conceptSetName: "=",
                     observation: "=",

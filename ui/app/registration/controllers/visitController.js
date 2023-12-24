@@ -90,6 +90,30 @@ angular.module('bahmni.registration')
                 return deferred.promise;
             };
 
+            $scope.updateToEmergency = function () {
+                var visitId = 4;
+                visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
+                    $state.reload();
+                });
+            };
+            $scope.updateToOPD = function () {
+                var visitId=5;
+                visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
+                    $state.reload();
+                });
+            };
+            $scope.updateToFollowUp = function () {
+                var visitId=9;
+                visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
+                    $state.reload();
+                });
+            };
+            $scope.updateToFree = function () {
+                var visitId=10;
+                visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
+                    $state.reload();
+                });
+            };
             var getAllForms = function () {
                 var deferred = $q.defer();
                 formService.getFormList($scope.encounterUuid)

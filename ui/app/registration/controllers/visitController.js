@@ -83,6 +83,8 @@ angular.module('bahmni.registration')
                                 $scope.visitTypePrice = "Rs 100";
                             } else if (visitType.display === 'IPD') {
                                 $scope.visitTypePrice = "Rs 40";
+                            }  else if (visitType.display === 'Free') {
+                                $scope.visitTypePrice = "Rs 0";
                             }
                         }
                     });
@@ -93,25 +95,25 @@ angular.module('bahmni.registration')
             $scope.updateToEmergency = function () {
                 var visitId = 4;
                 visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
-                    $state.reload();
+                    $scope.visitTypePrice = "Rs 100";
                 });
             };
             $scope.updateToOPD = function () {
                 var visitId=5;
                 visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
-                    $state.reload();
+                    $scope.visitTypePrice = "Rs 20";
                 });
             };
             $scope.updateToFollowUp = function () {
                 var visitId=9;
                 visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid){
-                    $state.reload();
+                    $scope.visitTypePrice = "Rs 5";
                 });
             };
             $scope.updateToFree = function () {
                 var visitId=10;
                 visitService.changeVisit(visitId, patientUuid).then(function (visitId, patientUuid) {
-                    $state.reload();
+                    $scope.visitTypePrice = "Rs 0";
                 });
             };
             var getAllForms = function () {

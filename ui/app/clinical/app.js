@@ -203,13 +203,13 @@ angular.module('consultation')
                 }
             })
             .state('patient.dashboard.show.treatment.page', {
-                url: "/treatment?tabConfigName",
+                url: "/treatment?tabConfigName&orderType",
                 params: {
                     cachebuster: null
                 },
                 resolve: {
                     activeDrugOrders: function (treatmentService, $stateParams) {
-                        return treatmentService.getActiveDrugOrders($stateParams.patientUuid, $stateParams.dateEnrolled, $stateParams.dateCompleted);
+                        return treatmentService.getActiveDrugOrders($stateParams.patientUuid, $stateParams.dateEnrolled, $stateParams.dateCompleted, $stateParams.orderType);
                     }
                 },
                 views: {

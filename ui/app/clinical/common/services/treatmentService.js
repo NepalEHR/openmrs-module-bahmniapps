@@ -5,12 +5,13 @@ angular.module('bahmni.clinical')
         var createDrugOrder = function (drugOrder) {
             return Bahmni.Clinical.DrugOrder.create(drugOrder);
         };
-        var getActiveDrugOrdersFromServer = function (patientUuid, startDate, endDate) {
+        var getActiveDrugOrdersFromServer = function (patientUuid, startDate, endDate, orderType) {
             return $http.get(Bahmni.Common.Constants.bahmniDrugOrderUrl + "/active", {
                 params: {
                     patientUuid: patientUuid,
                     startDate: startDate,
-                    endDate: endDate
+                    endDate: endDate,
+                    orderType: orderType
                 },
                 withCredentials: true
             });
@@ -46,13 +47,13 @@ angular.module('bahmni.clinical')
             return programConfig;
         };
 
-        var getActiveDrugOrders = function (patientUuid, fromDate, toDate) {
+        var getActiveDrugOrders = function (patientUuid, fromDate, toDate, orderType) {
             var programConfig = getProgramConfig();
             var startDate = programConfig.showDetailsWithinDateRange ? fromDate : null;
             var endDate = programConfig.showDetailsWithinDateRange ? toDate : null;
 
             var deferred = $q.defer();
-            getActiveDrugOrdersFromServer(patientUuid, startDate, endDate).success(function (response) {
+            getActiveDrugOrdersFromServer(patientUuid, startDate, endDate, orderType).success(function (response) {
                 var activeDrugOrders = response.map(createDrugOrder);
                 deferred.resolve(activeDrugOrders);
             });

@@ -243,6 +243,16 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 var urlPrefix = urlHelper.getPatientUrl();
                 var url = "/" + $stateParams.configName + (board.url ? urlPrefix + "/" + board.url : urlPrefix);
                 var queryParams = [];
+                var orderType;
+                if (board.translationKey === "Treatment") {
+                    orderType = "Drugs list";
+                }
+                if (board.translationKey === "Surgical/Procedures order") {
+                    orderType = "Hospital Service";
+                }
+                if (orderType){
+                    queryParams.push("orderType=" + orderType);
+                }
                 if ($state.params.encounterUuid) {
                     queryParams.push("encounterUuid=" + $state.params.encounterUuid);
                 }

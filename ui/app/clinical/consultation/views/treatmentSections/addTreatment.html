@@ -209,7 +209,7 @@
                                 <label class="start-date-label ">{{ ::treatmentConfig.translate('quantity', 'MEDICATION_LABEL_TOTAL_QUANTITY') }} </label>
                             </div>
                             <div class="field-value">
-                                <input id="quantity" class="quantity fl" type="number" min="0.1" max = "{{actual_stock}}" step="any"
+                                <input id="quantity" class="quantity fl" type="number" min="0.1" max = "{{qty_available}}" step="any"
                                        ng-model="treatment.quantity" ng-change="treatment.setQuantityEnteredManually()"
                                        ng-required="treatment.isDurationRequired"/>
                             </div>

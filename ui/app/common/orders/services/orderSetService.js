@@ -53,4 +53,10 @@ angular.module('bahmni.common.orders')
                 withCredentials: true
             });
         };
+        this.serviceSkipStock = function (uuid) {
+            return $http.get(Bahmni.Clinical.Constants.productUrl + uuid, {
+                withCredentials: true
+            });
+        };
+
     }]);
